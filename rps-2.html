@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Sigmar+One" rel="stylesheet">
+  <title>Rock Paper Scissors
+  </title>
+</head>
+
+<body>
+
+  <div class="Container">
+
+    <div id="game">
+      <header>Rock Paper Scissors Game</header>
+      <br>
+  
+      <div id="description">
+          <p><em><strong>Press "R", "P", or "S" on your keyboard, to play Rock, Paper, & Sissors!</strong></em></p>
+          <br>
+          <div>You guessed:   <strong><span id="usertext">[PLEASE PRESS!] </span></strong></div>
+          <div>Computer guessed:   <strong><span id="comptext">[PLEASE PRESS!] </span></strong></div> 
+          <br>
+
+          <div><strong>Win = </strong><span id="wintext"> 0</span></div> 
+          <div><strong>Loss = </strong><span id="losstext"> 0 </span></div> 
+          <div><strong>Tie = </strong><span id="tietext">0 </span></div> 
+          
+          <br>
+
+          <button onclick="ResetClick()" type="button" class="btn btn-secondary">Reset</button>
+    </div>
+    </div>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/300px-Rock-paper-scissors.svg.png">
+
+
+  </div>
+
+  <style>
+    header {
+      font-family: 'Sigmar One', cursive;
+      font-size: 25px;
+    }
+
+    #description {
+      float: left;
+      width: 60%;
+    }
+
+    img {
+      float: left;
+      width: 30%；
+    }
+
+    body {
+      margin-left: 5%;
+    }
+
+
+  </style>
+
+
+
+  <script type="text/javascript">
+
+    var win = 0;
+    var loss = 0;
+    var tie = 0;
+    
+    var userT = document.getElementById("usertext");
+    var compT = document.getElementById("comptext");
+
+
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+
+    // when clicked 
+    function ResetClick() {
+      win = 0;
+      loss = 0;
+      tie = 0;
+      userT.textContent = "[PLEASE PRESS!] ";
+      compT.textContent = "[PLEASE PRESS!] ";
+      losstext.textContent = loss;
+      wintext.textContent = win;
+      tietext.textContent = tie;
+
+    }
+
+
+
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+            // Determines which key was pressed.
+            var userGuess = event.key;
+
+            // Randomly chooses a choice from the options array. This is the Computer's guess.
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+            // Alerts the key the user pressed (userGuess).
+                // alert("User guess: " + userGuess);
+            usertext.textContent = userGuess;
+
+            // Alerts the Computer's guess.
+                // alert("Computer guess: " + computerGuess);
+            comptext.textContent = computerGuess;
+
+            // When user press "R"
+            if (userGuess === "r") {
+              usertext.textContent = "Rock";
+
+                  if (computerGuess === "r") {
+                    tie++;
+                    tietext.textContent = tie;
+                    comptext.textContent = "Rock";
+                    
+                  }
+
+                  else if (computerGuess === "p") {
+                    loss++;
+                    losstext.textContent = loss;
+                    comptext.textContent = "Paper";
+                  }
+
+                  else {
+                    win++
+                    wintext.textContent = win;
+                    comptext.textContent = "Scissors";
+                  }
+            }
+
+            // When user press "S"
+            else if (userGuess === "s") {
+
+              usertext.textContent = "Scissors";
+
+                  if (computerGuess === "s") {
+                    tie++;
+                    tietext.textContent = tie;
+                    comptext.textContent = "Scissors";
+                  }
+
+                  else if (computerGuess === "r") {
+                    loss++;
+                    losstext.textContent = loss;
+                    comptext.textContent = "Rock";
+                  }
+
+                  else {
+                    win++;
+                    wintext.textContent = win;
+                    comptext.textContent = "Paper";
+                  }
+            }
+
+            
+            // When user press "p"
+            else if (userGuess === "p") {
+
+              usertext.textContent = "Paper";
+
+                  if (computerGuess === "p") {
+                    tie++;
+                    tietext.textContent = tie;
+                    comptext.textContent = "Paper";
+                  }
+
+                  else if (computerGuess === "s") {
+                    loss++;
+                    losstext.textContent = loss;
+                    comptext.textContent = "Scissors";
+                  }
+
+                  else {
+                    win++;
+                    wintext.textContent = win;
+                    comptext.textContent = "Rock";
+                  }
+            }
+
+
+            // When user press other keys
+            else  {
+                  alert("Press R, P, or S on your keyboard!");
+                  usertext.textContent = "???";
+                  comptext.textContent = "???";
+            }
+      
+      }
+    
+
+  </script>
+
+</body>
+
+</html>
